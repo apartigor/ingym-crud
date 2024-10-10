@@ -15,7 +15,7 @@ Content-Type: application/json
 GET http://localhost:5290/api/plano/listar
 
 ### Deletar Plano
-DELETE http://localhost:5290/api/plano/deletar/4
+DELETE http://localhost:5290/api/plano/deletar/1
 
 
 ### Cadastrar Aluno
@@ -25,5 +25,5 @@ Content-Type: application/json
 {
     "nome" : "Igor Viana",
     "email" : "Igor@email.com",
-    "planoId" : 1
+    "planoId" : 5
 }
