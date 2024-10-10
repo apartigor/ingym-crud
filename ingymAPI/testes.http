@@ -11,6 +11,13 @@ Content-Type: application/json
     "preco" : 99.90
 }
 
+### Listar Planos
+GET http://localhost:5290/api/plano/listar
+
+### Deletar Plano
+DELETE http://localhost:5290/api/plano/deletar/4
+
+
 ### Cadastrar Aluno
 POST http://localhost:5290/api/aluno/cadastrar
 Content-Type: application/json
