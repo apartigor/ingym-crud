@@ -1,0 +1,22 @@
+### TESTE DA RAIZ DA API
+GET http://localhost:5290
+
+### Cadastrar plano
+POST http://localhost:5290/api/plano/cadastrar
+Content-Type: application/json
+
+{
+    "nome" : "Plano Livre",
+    "descricao" : "Sem personal trainer, nutricionista ou treino personalizado.",
+    "preco" : 99.90
+}
+
+### Cadastrar Aluno
+POST http://localhost:5290/api/aluno/cadastrar
+Content-Type: application/json
+
+{
+    "nome" : "Igor Viana",
+    "email" : "Igor@email.com",
+    "planoId" : 1
+}
