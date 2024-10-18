@@ -11,7 +11,7 @@ app.MapGet("/", () => "API funcionando!");
 
 //*********************PLANO***********************
 
-//Cadastro Plano 
+//Cadastro de Plano
 //POST: /api/plano/cadastrar
 app.MapPost("/api/plano/cadastrar", ([FromBody] Plano plano,
     [FromServices] AppDataContext bdd) =>
@@ -60,6 +60,23 @@ app.MapGet("/api/plano/buscar/{id}", ([FromRoute] int id, [FromServices] AppData
             return Results.NotFound("Nenhum plano encontrado!");
         }
     }
+    return Results.Ok(plano);
+});
+
+// Alterar Plano pelo ID
+// PUT: /api/plano/alterar/id
+app.MapPut("/api/plano/alterar/{id}", ([FromRoute] int id, [FromBody] Plano planoAlterado, [FromServices] AppDataContext bdd) =>
+{
+    // Busca pela chave primária
+    Plano? plano = bdd.Planos.Find(id);
+    if (plano == null)
+    {
+        return Results.NotFound("Nenhum plano encontrado!");
+    }
+    plano.Nome = planoAlterado.Nome;
+    plano.Descricao = planoAlterado.Descricao;
+    plano.Preco = planoAlterado.Preco;
+    bdd.SaveChanges();
     return Results.Ok(plano);
 });
 

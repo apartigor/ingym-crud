@@ -17,8 +17,17 @@ Content-Type: application/json
 GET http://localhost:5290/api/plano/listar
 
 ### Buscar Plano
-GET http://localhost:5290/api/plano/buscar/10
+GET http://localhost:5290/api/plano/buscar/12
 
+### Alterar Plano
+PUT http://localhost:5290/api/plano/alterar/12
+Content-Type: application/json
+
+{
+    "nome" : "Plano VIP",
+    "descricao" : "Acesso ao treino personalizado, mas sem personal trainer ou nutricionista",
+    "preco" : 149.90
+}
 
 ### Deletar Plano
 DELETE http://localhost:5290/api/plano/deletar/10
