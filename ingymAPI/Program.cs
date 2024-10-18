@@ -33,7 +33,7 @@ app.MapGet("/api/plano/listar", ([FromServices] AppDataContext bdd) =>
 });
 
 // Deletar Plano por ID
-//DELETE: /api/plano/deletar/{id}
+// DELETE: /api/plano/deletar/{id}
 app.MapDelete("/api/plano/deletar/{id}", ([FromRoute] int id,
     [FromServices] AppDataContext bdd) =>
 {
@@ -84,14 +84,35 @@ app.MapPut("/api/plano/alterar/{id}", ([FromRoute] int id, [FromBody] Plano plan
 
 //*********************ALUNO***********************
 
-//Cadastro Aluno
-//POST: /api/aluno/cadastrar
+// Cadastro de Aluno
+// POST: /api/aluno/cadastrar
 app.MapPost("/api/aluno/cadastrar", ([FromBody] Aluno aluno,
     [FromServices] AppDataContext bdd) =>
 {
+    var plano = bdd.Planos.Find(aluno.PlanoId);
+    if (plano == null)
+    {
+        return Results.NotFound("Nenhum plano encontrado!");
+    }
+    aluno.Plano = plano;
     bdd.Alunos.Add(aluno);
     bdd.SaveChanges();
     return Results.Created("", aluno);
 });
+
+// Listar Alunos
+// GET: /api/aluno/listar
+app.MapGet("/api/aluno/listar", ([FromServices] AppDataContext bdd) =>
+{
+    if (bdd.Alunos.Any())
+    {
+        return Results.Ok(bdd.Alunos
+        .Include(a => a.Plano)
+        .ToList());
+    }
+    return Results.NotFound("Nenhum aluno encontrado!");
+});
+
+// Deletar Aluno pelo ID
 
 app.Run();

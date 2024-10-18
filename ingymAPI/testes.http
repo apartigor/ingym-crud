@@ -41,5 +41,8 @@ Content-Type: application/json
 {
     "nome" : "Igor Viana",
     "email" : "Igor@email.com",
-    "planoId" : 5
+    "planoId" : 12
 }
+
+### Listar Alunos
+GET http://localhost:5290/api/aluno/listar
