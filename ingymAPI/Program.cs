@@ -114,5 +114,19 @@ app.MapGet("/api/aluno/listar", ([FromServices] AppDataContext bdd) =>
 });
 
 // Deletar Aluno pelo ID
+// DELETE: /api/aluno/deletar/{id}
+app.MapDelete("/api/aluno/deletar/{id}", ([FromRoute] int id,
+    [FromServices] AppDataContext bdd) =>
+{
+    Aluno? aluno = bdd.Alunos.Find(id);
+    if (aluno == null)
+    {
+        return Results.NotFound("Nenhum aluno encontrado!");
+    }
+    bdd.Alunos.Remove(aluno);
+    bdd.SaveChanges();
+    return Results.Ok("Aluno removido com sucesso!");
+
+});
 
 app.Run();

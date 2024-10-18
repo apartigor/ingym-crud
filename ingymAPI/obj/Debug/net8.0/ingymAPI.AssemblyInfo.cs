@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ingymAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c1eaabce10ed0b1295d38a8d60d020d755afdeea")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea243534713e835b3ea7b43ae8504840e7123836")]
 [assembly: System.Reflection.AssemblyProductAttribute("ingymAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ingymAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

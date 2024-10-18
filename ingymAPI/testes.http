@@ -46,3 +46,6 @@ Content-Type: application/json
 
 ### Listar Alunos
 GET http://localhost:5290/api/aluno/listar
+
+### Deletar Aluno pelo ID
+DELETE http://localhost:5290/api/aluno/deletar/5
