@@ -1,6 +1,8 @@
 ### TESTE DA RAIZ DA API
 GET http://localhost:5290
 
+########### PLANO
+
 ### Cadastrar plano
 POST http://localhost:5290/api/plano/cadastrar
 Content-Type: application/json
@@ -14,9 +16,14 @@ Content-Type: application/json
 ### Listar Planos
 GET http://localhost:5290/api/plano/listar
 
-### Deletar Plano
-DELETE http://localhost:5290/api/plano/deletar/1
+### Buscar Plano
+GET http://localhost:5290/api/plano/buscar/10
 
+
+### Deletar Plano
+DELETE http://localhost:5290/api/plano/deletar/10
+
+########### ALUNO
 
 ### Cadastrar Aluno
 POST http://localhost:5290/api/aluno/cadastrar
