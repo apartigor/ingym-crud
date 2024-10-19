@@ -113,6 +113,23 @@ app.MapGet("/api/aluno/listar", ([FromServices] AppDataContext bdd) =>
     return Results.NotFound("Nenhum aluno encontrado!");
 });
 
+// Buscar Aluno por ID
+// GET: /api/aluno/buscar/{id}
+app.MapGet("/api/aluno/buscar/{id}", ([FromRoute] int id, [FromServices] AppDataContext bdd) =>
+{
+    var aluno = bdd.Alunos
+        .Include(a => a.Plano)
+        .FirstOrDefault(a => a.AlunoId == id);
+
+    if (aluno == null)
+    {
+        return Results.NotFound("Nenhum aluno encontrado!");
+    }
+
+    return Results.Ok(aluno);
+});
+
+
 // Deletar Aluno pelo ID
 // DELETE: /api/aluno/deletar/{id}
 app.MapDelete("/api/aluno/deletar/{id}", ([FromRoute] int id,
@@ -128,5 +145,32 @@ app.MapDelete("/api/aluno/deletar/{id}", ([FromRoute] int id,
     return Results.Ok("Aluno removido com sucesso!");
 
 });
+
+// Alterar Aluno pelo ID
+// PUT: /api/aluno/alterar/{id}
+app.MapPut("/api/aluno/alterar/{id}", ([FromRoute] int id, [FromBody] Aluno alunoAlterado, [FromServices] AppDataContext bdd) =>
+{
+    Aluno? aluno = bdd.Alunos.Find(id);
+    if (aluno == null)
+    {
+        return Results.NotFound("Nenhum aluno encontrado!");
+    }
+
+    var plano = bdd.Planos.Find(alunoAlterado.PlanoId);
+    if (plano == null)
+    {
+        return Results.NotFound("Plano não encontrado!");
+    }
+
+    aluno.Nome = alunoAlterado.Nome;
+    aluno.Email = alunoAlterado.Email;
+    aluno.PlanoId = alunoAlterado.PlanoId;
+    aluno.Plano = plano;
+
+    bdd.SaveChanges();
+
+    return Results.Ok(aluno);
+});
+
 
 app.Run();

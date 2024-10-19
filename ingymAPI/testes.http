@@ -49,3 +49,17 @@ GET http://localhost:5290/api/aluno/listar
 
 ### Deletar Aluno pelo ID
 DELETE http://localhost:5290/api/aluno/deletar/5
+
+
+### Buscar Aluno pelo ID
+GET http://localhost:5290/api/aluno/buscar/5
+
+### Alterar Aluno pelo ID
+PUT http://localhost:5290/api/aluno/alterar/5
+Content-Type: application/json
+
+{
+    "nome": "Nicolas Yasumoto",
+    "email": "nicolas@email.com",
+    "planoId": 12
+}
