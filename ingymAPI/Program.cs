@@ -4,6 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDataContext>();
+builder.Services.AddCors(options =>
+options.AddPolicy("Acesso Total",
+configs => configs
+.AllowAnyOrigin()
+.AllowAnyHeader()
+.AllowAnyMethod())
+);
 var app = builder.Build();
 
 //API - Funcionando
@@ -172,5 +179,69 @@ app.MapPut("/api/aluno/alterar/{id}", ([FromRoute] int id, [FromBody] Aluno alun
     return Results.Ok(aluno);
 });
 
+// Aplicar desconto por desempenho
+// POST: /api/aluno/desempenho/{id}/{meses}
+app.MapPost("/api/aluno/desempenho/{id}/{meses}", ([FromRoute] int id, [FromRoute] int meses, [FromServices] AppDataContext bdd) =>
+{
+    if (meses < 0)
+    {
+        return Results.BadRequest("A quantidade de meses deve ser maior que 0!");
+    }
+
+    var aluno = bdd.Alunos
+        .Include(a => a.Plano)
+        .FirstOrDefault(a => a.AlunoId == id);
+
+    if (aluno == null)
+    {
+        return Results.NotFound("Aluno não encontrado!");
+    }
+
+    var plano = aluno.Plano;
+    if (plano == null)
+    {
+        return Results.NotFound("Plano do aluno não encontrado!");
+    }
+
+    decimal desconto = 0;
+
+    switch (plano.PlanoId)
+    {
+        case 12: // Vip
+            if (meses >= 3 && meses < 6) desconto = 0.05m;
+            else if (meses >= 6 && meses <= 10) desconto = 0.10m;
+            else if (meses > 10) desconto = 0.15m;
+            break;
+
+        case 13: // Vip Plus
+            if (meses >= 2 && meses < 6) desconto = 0.08m;
+            else if (meses >= 6 && meses <= 10) desconto = 0.14m;
+            else if (meses > 10) desconto = 0.20m;
+            break;
+
+        case 11:
+            desconto = 0;
+            break;
+
+        default:
+            return Results.BadRequest("Plano não elegível para desconto.");
+    }
+
+    decimal valorOriginal = plano.Preco;
+    decimal valorComDesconto = valorOriginal * (1 - desconto);
+
+    return Results.Ok(new
+    {
+        Aluno = aluno.Nome,
+        Plano = plano.Nome,
+        Meses = meses,
+        ValorOriginal = valorOriginal,
+        ValorComDesconto = desconto > 0 ? valorComDesconto : valorOriginal,
+        DescontoAplicado = desconto > 0 ? $"{desconto * 100}%" : "Nenhum desconto aplicado"
+    });
+});
+
+
+app.UseCors("Acesso Total");
 
 app.Run();

@@ -39,9 +39,9 @@ POST http://localhost:5290/api/aluno/cadastrar
 Content-Type: application/json
 
 {
-    "nome" : "Igor Viana",
-    "email" : "Igor@email.com",
-    "planoId" : 12
+    "nome" : "Rodrigo da Silva",
+    "email" : "rodrigo@email.com",
+    "planoId" : 16
 }
 
 ### Listar Alunos
@@ -52,7 +52,7 @@ DELETE http://localhost:5290/api/aluno/deletar/5
 
 
 ### Buscar Aluno pelo ID
-GET http://localhost:5290/api/aluno/buscar/5
+GET http://localhost:5290/api/aluno/buscar/7
 
 ### Alterar Aluno pelo ID
 PUT http://localhost:5290/api/aluno/alterar/5
@@ -63,3 +63,6 @@ Content-Type: application/json
     "email": "nicolas@email.com",
     "planoId": 12
 }
+
+### Desconto do Aluno por Mes
+POST http://localhost:5290/api/aluno/desempenho/8/12
