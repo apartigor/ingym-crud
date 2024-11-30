@@ -57,7 +57,7 @@ const CadastroAluno: React.FC = () => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [planoId, setPlanoId] = useState(0);
-  const [planos, setPlanos] = useState([]);
+  const [planos, setPlanos] = useState<{ id: number; nome: string }[]>([]);
 
   useEffect(() => {
     const fetchPlanos = async () => {
@@ -88,18 +88,18 @@ const CadastroAluno: React.FC = () => {
       <Form onSubmit={handleSubmit}>
         <Input type="text" value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Nome" required />
         <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-        <Select
-          value={planoId}
-          onChange={(e) => setPlanoId(Number(e.target.value))}
-          required
+        <select
+            value={planoId}
+            onChange={(e) => setPlanoId(Number(e.target.value))}
+            required
           >
-          <option value="">Selecione um plano</option>
-          {planos.map((plano: any) => (
-            <option key={plano.id} value={plano.id}>
-              {plano.nome}
-            </option>
-          ))}
-        </Select>
+            <option value="">Selecione um plano</option>
+            {planos.map((plano) => (
+              <option key={plano.id} value={plano.id}>
+                {plano.nome}
+              </option>
+            ))}
+          </select>
         <Button type="submit">Cadastrar Aluno</Button>
       </Form>
     </Container>
