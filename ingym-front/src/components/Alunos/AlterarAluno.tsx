@@ -19,7 +19,7 @@ const Input = styled.input`
 
 const Select = styled.select`
   padding: 10px;
-  width: 100%;
+  width: 320px;
   border: 1px solid #ccc;
   border-radius: 4px;
 `;
@@ -36,15 +36,24 @@ const Button = styled.button`
     background-color: #0056b3;
   }
 `;
+const Container = styled.div`
+  padding: 20px;
+  background-color: #f8f9fa;
+`;
+
+const Title = styled.h1`
+  color: #343a40;
+  margin-bottom: 20px;
+`;
 
 const AlterarAluno: React.FC = () => {
   const { alunoId } = useParams<{ alunoId: string }>();
   const navigate = useNavigate();
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [planoId, setPlanoId] = useState<number | ''>('');
+  const [planoId, setPlanoId] = useState<number | string>('');
   const [planos, setPlanos] = useState<any[]>([]);
-  const [error, setError] = useState<string>('');
+  const [, setError] = useState<string>('');
 
   useEffect(() => {
     const fetchAluno = async () => {
@@ -84,35 +93,38 @@ const AlterarAluno: React.FC = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Input
-        type="text"
-        value={nome}
-        onChange={(e) => setNome(e.target.value)}
-        placeholder="Nome"
-        required
-      />
-      <Input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-        required
-      />
-      <Select
-        value={planoId}
-        onChange={(e) => setPlanoId(Number(e.target.value))}
-        required
-      >
-        <option value="">Selecione um plano</option>
-        {planos.map((plano) => (
-          <option key={plano.id} value={plano.id}>
-            {plano.nome}
-          </option>
-        ))}
-      </Select>
-      <Button type="submit">Salvar Alterações</Button>
-    </Form>
+    <Container>
+      <Title>Alterar Aluno</Title>
+      <Form onSubmit={handleSubmit}>
+        <Input
+          type="text"
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
+          placeholder="Nome"
+          required
+        />
+        <Input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          required
+        />
+        <Select
+          value={planoId}
+          onChange={(e) => setPlanoId(e.target.value)}
+          required
+        >
+          <option value="">Selecione um plano</option>
+          {planos.map((plano) => (
+            <option key={plano.planoId} value={plano.planoId}>
+              {plano.nome}
+            </option>
+          ))}
+        </Select>
+        <Button type="submit">Salvar Alterações</Button>
+      </Form>
+    </Container>
   );
 };
 

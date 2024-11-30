@@ -58,8 +58,8 @@ const ListarPlanos: React.FC = () => {
     fetchPlanos();
   }, []);
 
-  const handleAlterarPlano = (id: number) => {
-    navigate(`http://localhost:5290/planos/alterar/${id}`);
+  const handleAlterarPlano = (planoId: number) => {
+    navigate(`http://localhost:5290/planos/alterar/${planoId}`);
   };
 
   return (
@@ -67,11 +67,11 @@ const ListarPlanos: React.FC = () => {
       <Title>Planos</Title>
       <List>
         {planos.map((plano) => (
-          <ListItem key={plano.id}>
+          <ListItem key={plano.planoId}>
             <span>
-              {plano.nome} - {plano.descricao} - R$ {plano.preco.toFixed(2)}
+            {plano.planoId} - {plano.nome} - {plano.descricao} - R$ {plano.preco.toFixed(2)}
             </span>
-            <Button onClick={() => handleAlterarPlano(plano.id)}>Alterar</Button>
+            <Button onClick={() => handleAlterarPlano(plano.planoId)}>Alterar</Button>
           </ListItem>
         ))}
       </List>
