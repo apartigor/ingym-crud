@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   text-align: center;
@@ -24,8 +25,22 @@ const ListItem = styled.li`
   border-radius: 4px;
 `;
 
+const Button = styled.button`
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #a30000;
+  }
+`;
+
 const ListarAlunos: React.FC = () => {
   const [alunos, setAlunos] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAlunos = async () => {
@@ -40,12 +55,22 @@ const ListarAlunos: React.FC = () => {
     fetchAlunos();
   }, []);
 
+  const handleAlterarAluno = (id: number) => {
+    navigate(`http://localhost:5290/aluno/alterar/${id}`);
+  };
+
   return (
     <Container>
       <Title>Alunos</Title>
       <List>
         {alunos.map((aluno: any) => (
-          <ListItem key={aluno.id}>{aluno.nome} - {aluno.email} - {aluno.plano.nome}</ListItem>
+          <ListItem key={aluno.id}>
+            <span>
+            {aluno.nome} - {aluno.email} - {aluno.plano.nome}
+            </span>
+            <Button onClick={() => handleAlterarAluno(aluno.id)}>Alterar</Button>
+          </ListItem>
+
         ))}
       </List>
     </Container>

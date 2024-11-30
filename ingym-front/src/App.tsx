@@ -7,13 +7,12 @@ import ListIcon from '@mui/icons-material/List';
 import PersonIcon from '@mui/icons-material/Person';
 
 // Styled Components
-
 const Container = styled.div`
   display: flex;
   height: 100vh;
 `;
 
-// StyledLink deve ser definido antes de Sidebar para permitir a interpolação
+// Defina StyledLink antes de Sidebar para permitir a interpolação
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: #fff;
@@ -120,7 +119,7 @@ const Header = styled.header`
   padding: 10px 20px;
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Posiciona a logo no lado direito */
+  justify-content: flex-end;
 `;
 
 const HeaderLogo = styled.h1`
@@ -136,7 +135,6 @@ const Content = styled.main`
 `;
 
 // Componente App
-
 const App: React.FC = () => {
   return (
     <Container>

@@ -30,6 +30,16 @@ const Button = styled.button`
   }
 `;
 
+const Container = styled.div`
+  padding: 20px;
+  background-color: #f8f9fa;
+`;
+
+const Title = styled.h1`
+  color: #343a40;
+  margin-bottom: 20px;
+`;
+
 const AlterarPlano: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -65,12 +75,33 @@ const AlterarPlano: React.FC = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Input type="text" value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Nome" required />
-      <Input type="text" value={descricao} onChange={(e) => setDescricao(e.target.value)} placeholder="Descrição" required />
-      <Input type="number" value={preco} onChange={(e) => setPreco(Number(e.target.value))} placeholder="Preço" required />
-      <Button type="submit">Atualizar Plano</Button>
-    </Form>
+    <Container>
+      <Title>Alterar Plano</Title>
+      <Form onSubmit={handleSubmit}>
+        <Input
+          type="text"
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
+          placeholder="Nome"
+          required
+        />
+        <Input
+          type="text"
+          value={descricao}
+          onChange={(e) => setDescricao(e.target.value)}
+          placeholder="Descrição"
+          required
+        />
+        <Input
+          type="number"
+          value={preco}
+          onChange={(e) => setPreco(parseFloat(e.target.value))}
+          placeholder="Preço"
+          required
+        />
+        <Button type="submit">Salvar Alterações</Button>
+      </Form>
+    </Container>
   );
 };
 

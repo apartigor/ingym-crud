@@ -3,6 +3,19 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+// Styled Components
+
+const Container = styled.div`
+  padding: 20px;
+  background-color: #f8f9fa;
+  height: 100%;
+`;
+
+const Title = styled.h1`
+  color: #343a40;
+  margin-bottom: 20px;
+`;
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -19,7 +32,7 @@ const Input = styled.input`
 
 const Select = styled.select`
   padding: 10px;
-  width: 320px;
+  width: 100%;
   border: 1px solid #ccc;
   border-radius: 4px;
 `;
@@ -37,24 +50,30 @@ const Button = styled.button`
   }
 `;
 
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 0.9em;
+`;
+
 const AlterarAluno: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [planoId, setPlanoId] = useState(0);
-  const [planos, setPlanos] = useState([]);
+  const [planoId, setPlanoId] = useState<number | ''>('');
+  const [planos, setPlanos] = useState<any[]>([]);
+  const [error, setError] = useState<string>('');
 
   useEffect(() => {
     const fetchAluno = async () => {
       try {
-        const response = await axios.get(`http://localhost:5290/api/aluno/buscar/${id}`);
+        const response = await axios.get(`http://localhost:5290/api/aluno/alterar/${id}`);
         const aluno = response.data;
         setNome(aluno.nome);
         setEmail(aluno.email);
         setPlanoId(aluno.planoId);
-      } catch (error) {
-        alert('Erro ao buscar aluno!');
+      } catch (err) {
+        setError('Erro ao buscar dados do aluno!');
       }
     };
 
@@ -62,8 +81,8 @@ const AlterarAluno: React.FC = () => {
       try {
         const response = await axios.get('http://localhost:5290/api/plano/listar');
         setPlanos(response.data);
-      } catch (error) {
-        alert('Erro ao listar planos!');
+      } catch (err) {
+        setError('Erro ao listar planos!');
       }
     };
 
@@ -73,27 +92,56 @@ const AlterarAluno: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
+
+    if (planoId === '') {
+      setError('Por favor, selecione um plano.');
+      return;
+    }
+
     try {
-      await axios.put(`http://localhost:5290/api/plano/alterar/${id}`, { nome, email, planoId });
-      alert('Aluno atualizado com sucesso!');
-      navigate('http://localhost:5290/api/aluno/listar');
-    } catch (error) {
-      alert('Erro ao atualizar aluno!');
+      await axios.put(`http://localhost:5290/api/aluno/alterar/${id}`, { nome, email, planoId });
+      alert('Aluno alterado com sucesso!');
+      navigate('http://localhost:5290/alunos/listar');
+    } catch (err) {
+      setError('Erro ao alterar aluno!');
     }
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Input type="text" value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Nome" required />
-      <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-      <Select value={planoId} onChange={(e) => setPlanoId(Number(e.target.value))} required>
-        <option value="">Selecione um plano</option>
-        {planos.map((plano: any) => (
-          <option key={plano.id} value={plano.id}>{plano.nome}</option>
-        ))}
-      </Select>
-      <Button type="submit">Atualizar Aluno</Button>
-    </Form>
+    <Container>
+      <Title>Alterar Aluno</Title>
+      <Form onSubmit={handleSubmit}>
+        <Input
+          type="text"
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
+          placeholder="Nome"
+          required
+        />
+        <Input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          required
+        />
+        <Select
+          value={planoId}
+          onChange={(e) => setPlanoId(Number(e.target.value))}
+          required
+        >
+          <option value="">Selecione um plano</option>
+          {planos.map((plano) => (
+            <option key={plano.id} value={plano.id}>
+              {plano.nome}
+            </option>
+          ))}
+        </Select>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        <Button type="submit">Salvar Alterações</Button>
+      </Form>
+    </Container>
   );
 };
 
