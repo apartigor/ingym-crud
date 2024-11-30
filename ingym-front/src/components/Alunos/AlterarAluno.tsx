@@ -37,7 +37,7 @@ const Button = styled.button`
   }
 `;
 
-const EditarAluno: React.FC = () => {
+const AlterarAluno: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [nome, setNome] = useState('');
@@ -97,4 +97,4 @@ const EditarAluno: React.FC = () => {
   );
 };
 
-export default EditarAluno;
+export default AlterarAluno;

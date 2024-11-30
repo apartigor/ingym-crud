@@ -30,7 +30,7 @@ const Button = styled.button`
   }
 `;
 
-const EditarPlano: React.FC = () => {
+const AlterarPlano: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [nome, setNome] = useState('');
@@ -74,4 +74,4 @@ const EditarPlano: React.FC = () => {
   );
 };
 
-export default EditarPlano;
+export default AlterarPlano;

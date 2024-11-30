@@ -3,14 +3,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
-import Home from './components/Home';
-import CadastroPlano from './components/CadastroPlano';
-import EditarPlano from './components/EditarPlano';
-import ListarPlanos from './components/ListarPlanos';
-import ListarAlunos from './components/ListarAlunos';
-import CadastroAluno from './components/CadastroAluno';
-import EditarAluno from './components/EditarAluno';
-import GlobalStyle from './components/globalStyles';
+import Home from './pages/Home';
+import CadastroPlano from './components/Planos/CadastroPlano';
+import AlterarPlano from './components/Planos/AlterarPlano';
+import ListarPlanos from './components/Planos/ListarPlanos';
+import ListarAlunos from './components/Alunos/ListarAlunos';
+import CadastroAluno from './components/Alunos/CadastroAluno';
+import AlterarAluno from './components/Alunos/AlterarAluno';
+import GlobalStyle from './styles/globalStyles';
 
 ReactDOM.render(
   <>
@@ -20,10 +20,10 @@ ReactDOM.render(
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="planos/cadastrar" element={<CadastroPlano />} />
-          <Route path="planos/editar/:id" element={<EditarPlano />} />
+          <Route path="planos/alterar/:id" element={<AlterarPlano />} />
           <Route path="planos/listar" element={<ListarPlanos />} />
           <Route path="alunos/cadastrar" element={<CadastroAluno />} />
-          <Route path="alunos/editar/:id" element={<EditarAluno />} />
+          <Route path="alunos/alterar/:id" element={<AlterarAluno />} />
           <Route path="alunos/listar" element={<ListarAlunos />} />
         </Route>
       </Routes>
