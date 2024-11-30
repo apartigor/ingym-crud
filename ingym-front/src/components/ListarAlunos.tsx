@@ -30,7 +30,7 @@ const ListarAlunos: React.FC = () => {
   useEffect(() => {
     const fetchAlunos = async () => {
       try {
-        const response = await axios.get('/api/aluno/listar');
+        const response = await axios.get('http://localhost:5290/api/aluno/listar');
         setAlunos(response.data);
       } catch (error) {
         alert('Erro ao listar alunos!');

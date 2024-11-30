@@ -30,7 +30,7 @@ const ListarPlanos: React.FC = () => {
   useEffect(() => {
     const fetchPlanos = async () => {
       try {
-        const response = await axios.get('/api/plano/listar');
+        const response = await axios.get('http://localhost:5290/api/plano/listar');
         setPlanos(response.data);
       } catch (error) {
         alert('Erro ao listar planos!');

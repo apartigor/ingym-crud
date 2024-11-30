@@ -40,7 +40,7 @@ const EditarPlano: React.FC = () => {
   useEffect(() => {
     const fetchPlano = async () => {
       try {
-        const response = await axios.get(`/api/plano/buscar/${id}`);
+        const response = await axios.get(`http://localhost:5290/api/plano/buscar/${id}`);
         const plano = response.data;
         setNome(plano.nome);
         setDescricao(plano.descricao);
@@ -56,9 +56,9 @@ const EditarPlano: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.put(`/api/plano/alterar/${id}`, { nome, descricao, preco });
+      await axios.put(`http://localhost:5290/api/plano/alterar/${id}`, { nome, descricao, preco });
       alert('Plano atualizado com sucesso!');
-      navigate('/planos/listar');
+      navigate('http://localhost:5290/planos/listar');
     } catch (error) {
       alert('Erro ao atualizar plano!');
     }

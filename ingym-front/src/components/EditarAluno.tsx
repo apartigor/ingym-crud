@@ -48,7 +48,7 @@ const EditarAluno: React.FC = () => {
   useEffect(() => {
     const fetchAluno = async () => {
       try {
-        const response = await axios.get(`/api/aluno/buscar/${id}`);
+        const response = await axios.get(`http://localhost:5290/api/aluno/buscar/${id}`);
         const aluno = response.data;
         setNome(aluno.nome);
         setEmail(aluno.email);
@@ -60,7 +60,7 @@ const EditarAluno: React.FC = () => {
 
     const fetchPlanos = async () => {
       try {
-        const response = await axios.get('/api/plano/listar');
+        const response = await axios.get('http://localhost:5290/api/plano/listar');
         setPlanos(response.data);
       } catch (error) {
         alert('Erro ao listar planos!');
@@ -74,9 +74,9 @@ const EditarAluno: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.put(`/api/aluno/alterar/${id}`, { nome, email, planoId });
+      await axios.put(`http://localhost:5290/api/plano/alterar/${id}`, { nome, email, planoId });
       alert('Aluno atualizado com sucesso!');
-      navigate('/alunos/listar');
+      navigate('http://localhost:5290/api/aluno/listar');
     } catch (error) {
       alert('Erro ao atualizar aluno!');
     }

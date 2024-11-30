@@ -50,7 +50,7 @@ const CadastroPlano: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post('/api/plano/cadastrar', { nome, descricao, preco });
+      await axios.post('http://localhost:5290/api/plano/cadastrar', { nome, descricao, preco });
       alert('Plano cadastrado com sucesso!');
     } catch (error) {
       alert('Erro ao cadastrar plano!');
@@ -59,7 +59,7 @@ const CadastroPlano: React.FC = () => {
 
   return (
     <Container>
-        <Title>Cadastrar Aluno</Title>
+        <Title>Cadastrar Plano</Title>
     <Form onSubmit={handleSubmit}>
       <Input type="text" value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Nome" required />
       <Input type="text" value={descricao} onChange={(e) => setDescricao(e.target.value)} placeholder="Descrição" required />
