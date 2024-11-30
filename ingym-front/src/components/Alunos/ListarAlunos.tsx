@@ -55,20 +55,23 @@ const ListarAlunos: React.FC = () => {
     fetchAlunos();
   }, []);
 
-  const handleAlterarAluno = (id: number) => {
-    navigate(`http://localhost:5290/aluno/alterar/${id}`);
+  const handleAlterarAluno = (alunoId: number) => {
+    if (alunoId) {
+      navigate(`/aluno/alterar/${alunoId}`);
+    } else {
+      console.error("ID do aluno não encontrado.");
+    }
   };
-
   return (
     <Container>
       <Title>Alunos</Title>
       <List>
         {alunos.map((aluno: any) => (
-          <ListItem key={aluno.id}>
+          <ListItem key={aluno.alunoId}>
             <span>
-            {aluno.nome} - {aluno.email} - {aluno.plano.nome}
+              {aluno.alunoId} - {aluno.nome} - {aluno.email} - {aluno.plano.nome}
             </span>
-            <Button onClick={() => handleAlterarAluno(aluno.id)}>Alterar</Button>
+            <Button onClick={() => handleAlterarAluno(aluno.alunoId)}>Alterar</Button>
           </ListItem>
 
         ))}

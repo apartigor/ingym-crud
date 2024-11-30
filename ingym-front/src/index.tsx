@@ -20,10 +20,10 @@ ReactDOM.render(
         <Route path="/" element={<App />}>
         <Route index element={<Home />} />
           <Route path="planos/cadastrar" element={<CadastroPlano />} />
-          <Route path="planos/editar/:id" element={<AlterarPlano />} />
+          <Route path="plano/alterar/:id" element={<AlterarPlano />} />
           <Route path="planos/listar" element={<ListarPlanos />} />
           <Route path="alunos/cadastrar" element={<CadastroAluno />} />
-          <Route path="alunos/alterar/:id" element={<AlterarAluno />} /> {}
+          <Route path="aluno/alterar/:id" element={<AlterarAluno />} /> {}
           <Route path="alunos/listar" element={<ListarAlunos />} />
         </Route>
       </Routes>
