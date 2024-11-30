@@ -81,8 +81,8 @@ const AlterarAluno: React.FC = () => {
       try {
         const response = await axios.get('http://localhost:5290/api/plano/listar');
         setPlanos(response.data);
-      } catch (err) {
-        setError('Erro ao listar planos!');
+      } catch (error) {
+        alert('Erro ao listar planos!');
       }
     };
 
