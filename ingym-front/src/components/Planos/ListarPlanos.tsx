@@ -59,7 +59,11 @@ const ListarPlanos: React.FC = () => {
   }, []);
 
   const handleAlterarPlano = (planoId: number) => {
-    navigate(`http://localhost:5290/planos/alterar/${planoId}`);
+    if (planoId) {
+      navigate(`/plano/alterar/${planoId}`);
+    } else {
+      console.error("ID do plano não encontrado.");
+    }
   };
 
   return (

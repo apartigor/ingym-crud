@@ -51,33 +51,20 @@ const AlterarAluno: React.FC = () => {
   const navigate = useNavigate();
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [planoId, setPlanoId] = useState<number | string>('');
+  const [planoId, setPlanoId] = useState('');
   const [planos, setPlanos] = useState<any[]>([]);
-  const [, setError] = useState<string>('');
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    const fetchAluno = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5290/api/aluno/alterar/${alunoId}`);
-        const aluno = response.data;
-        setNome(aluno.nome);
-        setEmail(aluno.email);
-        setPlanoId(aluno.planoId);
-      } catch (err) {
-        setError('Erro ao buscar dados do aluno!');
-      }
-    };
-
     const fetchPlanos = async () => {
       try {
         const response = await axios.get('http://localhost:5290/api/plano/listar');
         setPlanos(response.data);
-      } catch (error) {
-        alert('Erro ao listar planos!');
+      } catch (err) {
+        setError('Erro ao buscar planos!');
       }
     };
 
-    fetchAluno();
     fetchPlanos();
   }, [alunoId]);
 
@@ -86,7 +73,7 @@ const AlterarAluno: React.FC = () => {
     try {
       await axios.put(`http://localhost:5290/api/aluno/alterar/${alunoId}`, { nome, email, planoId });
       alert('Aluno alterado com sucesso!');
-      navigate('http://localhost:5290/aluno/listar');
+      navigate('/alunos/listar');
     } catch (err) {
       setError('Erro ao alterar aluno!');
     }
@@ -122,8 +109,9 @@ const AlterarAluno: React.FC = () => {
             </option>
           ))}
         </Select>
-        <Button type="submit">Salvar Alterações</Button>
+        <Button type="submit">Alterar Aluno</Button>
       </Form>
+      {error && <p>{error}</p>}
     </Container>
   );
 };

@@ -68,7 +68,7 @@ const AlterarPlano: React.FC = () => {
     try {
       await axios.put(`http://localhost:5290/api/plano/alterar/${id}`, { nome, descricao, preco });
       alert('Plano atualizado com sucesso!');
-      navigate('http://localhost:5290/planos/listar');
+      navigate('/planos/listar');
     } catch (error) {
       alert('Erro ao atualizar plano!');
     }
@@ -82,24 +82,18 @@ const AlterarPlano: React.FC = () => {
           type="text"
           value={nome}
           onChange={(e) => setNome(e.target.value)}
-          placeholder="Nome"
-          required
         />
         <Input
           type="text"
           value={descricao}
           onChange={(e) => setDescricao(e.target.value)}
-          placeholder="Descrição"
-          required
         />
         <Input
           type="number"
           value={preco}
-          onChange={(e) => setPreco(parseFloat(e.target.value))}
-          placeholder="Preço"
-          required
+          onChange={(e) => setPreco(Number(e.target.value))}
         />
-        <Button type="submit">Salvar Alterações</Button>
+        <Button type="submit">Salvar</Button>
       </Form>
     </Container>
   );

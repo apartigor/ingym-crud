@@ -2420,19 +2420,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\izapf\\.nuget\\packages\\": {}
+    "C:\\Users\\Nicol\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Usuários\\Igor\\Desktop\\Programacao\\ProjetoC#\\ingym-crud\\ingymAPI\\ingymAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Nicol\\Downloads\\ingym-crud\\ingymAPI\\ingymAPI.csproj",
       "projectName": "ingymAPI",
-      "projectPath": "D:\\Usuários\\Igor\\Desktop\\Programacao\\ProjetoC#\\ingym-crud\\ingymAPI\\ingymAPI.csproj",
-      "packagesPath": "C:\\Users\\izapf\\.nuget\\packages\\",
-      "outputPath": "D:\\Usuários\\Igor\\Desktop\\Programacao\\ProjetoC#\\ingym-crud\\ingymAPI\\obj\\",
+      "projectPath": "C:\\Users\\Nicol\\Downloads\\ingym-crud\\ingymAPI\\ingymAPI.csproj",
+      "packagesPath": "C:\\Users\\Nicol\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Nicol\\Downloads\\ingym-crud\\ingymAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\izapf\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Nicol\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -2495,7 +2495,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.307/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

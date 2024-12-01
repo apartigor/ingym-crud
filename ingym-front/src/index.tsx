@@ -23,7 +23,7 @@ ReactDOM.render(
           <Route path="plano/alterar/:id" element={<AlterarPlano />} />
           <Route path="planos/listar" element={<ListarPlanos />} />
           <Route path="alunos/cadastrar" element={<CadastroAluno />} />
-          <Route path="aluno/alterar/:id" element={<AlterarAluno />} /> {}
+          <Route path="aluno/alterar/:alunoId" element={<AlterarAluno />} /> {}
           <Route path="alunos/listar" element={<ListarAlunos />} />
         </Route>
       </Routes>
