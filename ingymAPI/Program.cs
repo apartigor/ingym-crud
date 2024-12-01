@@ -207,19 +207,19 @@ app.MapPost("/api/aluno/desempenho/{id}/{meses}", ([FromRoute] int id, [FromRout
 
     switch (plano.PlanoId)
     {
-        case 12: // Vip
+        case 2: // Vip
             if (meses >= 3 && meses < 6) desconto = 0.05m;
             else if (meses >= 6 && meses <= 10) desconto = 0.10m;
             else if (meses > 10) desconto = 0.15m;
             break;
 
-        case 13: // Vip Plus
+        case 3: // Vip Plus
             if (meses >= 2 && meses < 6) desconto = 0.08m;
             else if (meses >= 6 && meses <= 10) desconto = 0.14m;
             else if (meses > 10) desconto = 0.20m;
             break;
 
-        case 11:
+        case 1:
             desconto = 0;
             break;
 

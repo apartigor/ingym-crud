@@ -3,8 +3,10 @@ import { Link, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import ListIcon from '@mui/icons-material/List';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 import PersonIcon from '@mui/icons-material/Person';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 
 // Styled Components
 const Container = styled.div`
@@ -12,7 +14,6 @@ const Container = styled.div`
   height: 100vh;
 `;
 
-// Defina StyledLink antes de Sidebar para permitir a interpolação
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: #fff;
@@ -151,13 +152,13 @@ const App: React.FC = () => {
             <SectionTitle>Plano</SectionTitle>
             <NavItem>
               <StyledLink to="/planos/cadastrar">
-                <PersonAddIcon />
+                <BookmarkAddIcon />
                 <span>Cadastrar Plano</span>
               </StyledLink>
             </NavItem>
             <NavItem>
               <StyledLink to="/planos/listar">
-                <ListIcon />
+                <BookmarkIcon />
                 <span>Listar Planos</span>
               </StyledLink>
             </NavItem>
@@ -172,6 +173,12 @@ const App: React.FC = () => {
               <StyledLink to="/alunos/listar">
                 <PersonIcon />
                 <span>Listar Alunos</span>
+              </StyledLink>
+            </NavItem>
+            <NavItem>
+              <StyledLink to="/alunos/desempenho">
+                <AttachMoneyIcon />
+                <span>Calcular Desconto</span>
               </StyledLink>
             </NavItem>
           </NavList>
