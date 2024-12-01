@@ -25,7 +25,7 @@ const StyledLink = styled(Link)`
   transition: background-color 0.3s;
 
   &:hover {
-   background-color: #495057;
+    background-color: #495057;
   }
 
   svg {
@@ -44,7 +44,7 @@ const StyledLink = styled(Link)`
 `;
 
 const SectionTitle = styled.h2`
-  color: #adb5bd;
+  color: #ced4da;
   font-size: 1.2em;
   margin: 20px 0 10px;
   width: 100%;
@@ -57,7 +57,7 @@ const SectionTitle = styled.h2`
 
 const Sidebar = styled.div`
   width: 50px;
-  background-color: #343a40;
+  background-color: #212529;
   color: white;
   display: flex;
   flex-direction: column;
@@ -81,7 +81,7 @@ const Sidebar = styled.div`
 `;
 
 const Logo = styled.h1`
-  color: #fff;
+  color: #8B0000;
   margin-bottom: 20px;
   font-size: 1.5em;
   white-space: nowrap;
@@ -115,7 +115,7 @@ const Main = styled.div`
 `;
 
 const Header = styled.header`
-  background-color: #007bff;
+  background-color: #343a40;
   color: white;
   padding: 10px 20px;
   display: flex;
@@ -124,6 +124,7 @@ const Header = styled.header`
 `;
 
 const HeaderLogo = styled.h1`
+  color: #8B0000;
   margin: 0;
   font-size: 1.5em;
   white-space: nowrap;
@@ -132,7 +133,7 @@ const HeaderLogo = styled.h1`
 const Content = styled.main`
   flex: 1;
   padding: 20px;
-  background-color: #f8f9fa;
+  background-color: #1c1f22;
 `;
 
 // Componente App

@@ -7,7 +7,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f8f9fa;
+  background-color: #1c1f22;
 `;
 
 const Form = styled.form`
@@ -25,20 +25,20 @@ const Input = styled.input`
 `;
 
 const Title = styled.h1`
-  color: #333;
+  color: #fff;
   margin-bottom: 20px;
 `;
 
 const Button = styled.button`
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #8B0000;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #F00F00;
   }
 `;
 

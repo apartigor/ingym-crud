@@ -7,13 +7,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  background-color: #f8f9fa;
-`;
-
-const Title = styled.h1`
-  color: #343a40;
-  margin-bottom: 20px;
+  background-color: #1c1f22;
 `;
 
 const Form = styled.form`
@@ -21,17 +15,6 @@ const Form = styled.form`
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-`;
-
-const Select = styled.select`
-  padding: 10px;
-  width: 320px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
 `;
 
 const Input = styled.input`
@@ -41,17 +24,29 @@ const Input = styled.input`
   border-radius: 4px;
 `;
 
+const Title = styled.h1`
+  color: #fff;
+  margin-bottom: 20px;
+`;
+
 const Button = styled.button`
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #8B0000;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #F00F00;
   }
+`;
+
+const Select = styled.select`
+  padding: 10px;
+  width: 320px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 `;
 
 const Result = styled.div`

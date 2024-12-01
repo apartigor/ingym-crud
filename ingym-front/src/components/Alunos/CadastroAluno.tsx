@@ -7,7 +7,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f8f9fa;
+  background-color: #1c1f22;
 `;
 
 const Form = styled.form`
@@ -15,10 +15,6 @@ const Form = styled.form`
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 `;
 
 const Input = styled.input`
@@ -28,6 +24,24 @@ const Input = styled.input`
   border-radius: 4px;
 `;
 
+const Title = styled.h1`
+  color: #fff;
+  margin-bottom: 20px;
+`;
+
+const Button = styled.button`
+  padding: 10px 20px;
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #F00F00;
+  }
+`;
+
 const Select = styled.select`
   padding: 10px;
   width: 320px;
@@ -35,23 +49,6 @@ const Select = styled.select`
   border-radius: 4px;
 `;
 
-const Title = styled.h1`
-  color: #333;
-  margin-bottom: 20px;
-`;
-
-const Button = styled.button`
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-`;
 
 const CadastroAluno: React.FC = () => {
   const [nome, setNome] = useState('');
@@ -84,22 +81,22 @@ const CadastroAluno: React.FC = () => {
 
   return (
     <Container>
-        <Title>Cadastrar Aluno</Title>
+      <Title>Cadastrar Aluno</Title>
       <Form onSubmit={handleSubmit}>
         <Input type="text" value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Nome" required />
         <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
         <Select
-            value={planoId}
-            onChange={(e) => setPlanoId(e.target.value)}
-            required
-          >
-            <option value="">Selecione um plano</option>
-            {planos.map((plano) => (
-              <option key={plano.planoId} value={plano.planoId}>
-                {plano.nome}
-              </option>
-            ))}
-          </Select>
+          value={planoId}
+          onChange={(e) => setPlanoId(e.target.value)}
+          required
+        >
+          <option value="">Selecione um plano</option>
+          {planos.map((plano) => (
+            <option key={plano.planoId} value={plano.planoId}>
+              {plano.nome}
+            </option>
+          ))}
+        </Select>
         <Button type="submit">Cadastrar Aluno</Button>
       </Form>
     </Container>

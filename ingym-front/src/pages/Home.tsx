@@ -8,18 +8,20 @@ const HomeContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
-  background-color: #f8f9fa;
+  background-color: #1c1f22; 
 `;
 
 const HomeTitle = styled.h1`
-  color: #343a40;
-  font-size: 2.5em;
+  color: #8B0000;
+  font-size: 3.5em;
 `;
 
 const HomeSubTitle = styled.h2`
-  color: #343a40;
+  color: #D3D3D3; 
   font-size: 1.5em;
 `;
+
+
 
 const Home: React.FC = () => {
   return (
