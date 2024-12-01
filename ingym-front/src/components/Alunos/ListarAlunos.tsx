@@ -9,7 +9,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-  color: #343a40;
+  color: #ccc;
   margin-bottom: 20px;
 `;
 
