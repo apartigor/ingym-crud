@@ -11,8 +11,8 @@ using ingymAPI.Models;
 namespace ingymAPI.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20241010214248_AddCriadoEm")]
-    partial class AddCriadoEm
+    [Migration("20241201044316_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

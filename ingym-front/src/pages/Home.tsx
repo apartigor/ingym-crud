@@ -16,10 +16,16 @@ const HomeTitle = styled.h1`
   font-size: 2.5em;
 `;
 
+const HomeSubTitle = styled.h2`
+  color: #343a40;
+  font-size: 1.5em;
+`;
+
 const Home: React.FC = () => {
   return (
     <HomeContainer>
-      <HomeTitle>Bem vindo ao IN GYM</HomeTitle>
+      <HomeTitle>IN GYM</HomeTitle>
+      <HomeSubTitle>Sistema de Gestão de Academia</HomeSubTitle>
     </HomeContainer>
   );
 };

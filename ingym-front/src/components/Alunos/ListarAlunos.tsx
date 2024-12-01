@@ -4,12 +4,12 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
-  text-align: center;
   padding: 20px;
+  background-color: #f8f9fa;
 `;
 
 const Title = styled.h1`
-  color: #333;
+  color: #343a40;
   margin-bottom: 20px;
 `;
 
@@ -19,9 +19,12 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li`
-  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
   padding: 10px;
-  border: 1px solid #ccc;
+  margin-bottom: 10px;
   border-radius: 4px;
 `;
 
