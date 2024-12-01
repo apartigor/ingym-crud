@@ -28,7 +28,7 @@ const ListItem = styled.li`
   border-radius: 4px;
 `;
 
-const Button = styled.button`
+const ButtonDelete = styled.button`
   padding: 5px 10px;
   background-color: #8B0000;
   color: white;
@@ -38,6 +38,25 @@ const Button = styled.button`
 
   &:hover {
     background-color: #F00F00;
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 10px; /* Espaçamento entre os botões */
+  justify-content: flex-end; /* Alinha os botões à direita */
+`;
+
+const ButtonAlterar = styled.button`
+  padding: 5px 10px;
+  background-color: #5CDB7F;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #77DB6E;
   }
 `;
 
@@ -66,6 +85,19 @@ const ListarPlanos: React.FC = () => {
     }
   };
 
+  const handleDeletarPlano = async (planoId: number) => {
+    try {
+      const confirmDelete = window.confirm('Tem certeza que deseja excluir este plano?');
+      if (confirmDelete) {
+        const response = await axios.delete(`http://localhost:5290/api/plano/deletar/${planoId}`);
+        alert(response.data);
+        setPlanos(planos.filter((aluno: any) => aluno.planoId !== planoId));
+      }
+    } catch (error) {
+      alert('Erro ao deletar aluno!');
+    }
+  };
+
   return (
     <Container>
       <Title>Planos</Title>
@@ -73,9 +105,12 @@ const ListarPlanos: React.FC = () => {
         {planos.map((plano) => (
           <ListItem key={plano.planoId}>
             <span>
-            {plano.planoId} - {plano.nome} - {plano.descricao} - R$ {plano.preco.toFixed(2)}
+              {plano.planoId} - {plano.nome} - {plano.descricao} - R$ {plano.preco.toFixed(2)}
             </span>
-            <Button onClick={() => handleAlterarPlano(plano.planoId)}>Alterar</Button>
+            <ButtonGroup>
+              <ButtonAlterar onClick={() => handleAlterarPlano(plano.planoId)}>Alterar</ButtonAlterar>
+              <ButtonDelete onClick={() => handleDeletarPlano(plano.planoId)}>Deletar</ButtonDelete>
+            </ButtonGroup>
           </ListItem>
         ))}
       </List>

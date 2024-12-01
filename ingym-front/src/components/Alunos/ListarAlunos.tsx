@@ -28,7 +28,13 @@ const ListItem = styled.li`
   border-radius: 4px;
 `;
 
-const Button = styled.button`
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 10px; /* Espaçamento entre os botões */
+  justify-content: flex-end; /* Alinha os botões à direita */
+`;
+
+const ButtonDelete = styled.button`
   padding: 5px 10px;
   background-color: #8B0000;
   color: white;
@@ -38,6 +44,19 @@ const Button = styled.button`
 
   &:hover {
     background-color: #F00F00;
+  }
+`;
+
+const ButtonAlterar = styled.button`
+  padding: 5px 10px;
+  background-color: #5CDB7F;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #77DB6E;
   }
 `;
 
@@ -65,6 +84,20 @@ const ListarAlunos: React.FC = () => {
       console.error("ID do aluno não encontrado.");
     }
   };
+
+  const handleDeletarAluno = async (alunoId: number) => {
+    try {
+      const confirmDelete = window.confirm('Tem certeza que deseja excluir este aluno?');
+      if (confirmDelete) {
+        const response = await axios.delete(`http://localhost:5290/api/aluno/deletar/${alunoId}`);
+        alert(response.data);
+        setAlunos(alunos.filter((aluno: any) => aluno.alunoId !== alunoId));
+      }
+    } catch (error) {
+      alert('Erro ao deletar aluno!');
+    }
+  };
+
   return (
     <Container>
       <Title>Alunos</Title>
@@ -74,7 +107,10 @@ const ListarAlunos: React.FC = () => {
             <span>
               {aluno.alunoId} - {aluno.nome} - {aluno.email} - {aluno.plano.nome}
             </span>
-            <Button onClick={() => handleAlterarAluno(aluno.alunoId)}>Alterar</Button>
+            <ButtonGroup>
+              <ButtonAlterar onClick={() => handleAlterarAluno(aluno.alunoId)}>Alterar</ButtonAlterar>
+              <ButtonDelete onClick={() => handleDeletarAluno(aluno.alunoId)}>Deletar</ButtonDelete>
+            </ButtonGroup>
           </ListItem>
 
         ))}
